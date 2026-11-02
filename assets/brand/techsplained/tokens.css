@@ -1,0 +1,51 @@
+/* tech_splained brand tokens — one direction active per video via a body class.
+   Directions mirror docs/aesthetics/explore.html in the workflow repo. Pick one; the others stay for A/B tests.
+   Fonts: OFL (Inter, Inter Tight, Space Grotesk, JetBrains Mono, IBM Plex Mono) and Vercel Geist (OFL 1.1). */
+
+@font-face{font-family:Inter;font-weight:500;src:url(fonts/inter-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:600;src:url(fonts/inter-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:700;src:url(fonts/inter-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:800;src:url(fonts/inter-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter Tight";font-weight:500;src:url(fonts/inter-tight-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter Tight";font-weight:600;src:url(fonts/inter-tight-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Inter Tight";font-weight:700;src:url(fonts/inter-tight-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Space Grotesk";font-weight:400;src:url(fonts/space-grotesk-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Space Grotesk";font-weight:500;src:url(fonts/space-grotesk-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Space Grotesk";font-weight:600;src:url(fonts/space-grotesk-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Space Grotesk";font-weight:700;src:url(fonts/space-grotesk-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-weight:400;src:url(fonts/jetbrains-mono-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-weight:500;src:url(fonts/jetbrains-mono-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-weight:400;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-weight:500;src:url(fonts/ibm-plex-mono-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:Geist;font-weight:400;src:url(fonts/Geist-Regular.woff2) format("woff2")}
+@font-face{font-family:Geist;font-weight:500;src:url(fonts/Geist-Medium.woff2) format("woff2")}
+@font-face{font-family:Geist;font-weight:600;src:url(fonts/Geist-SemiBold.woff2) format("woff2")}
+@font-face{font-family:Geist;font-weight:700;src:url(fonts/Geist-Bold.woff2) format("woff2")}
+@font-face{font-family:"Geist Mono";font-weight:400;src:url(fonts/GeistMono-Regular.woff2) format("woff2")}
+@font-face{font-family:"Geist Mono";font-weight:500;src:url(fonts/GeistMono-Medium.woff2) format("woff2")}
+
+/* shared layout tokens (1080×1920) */
+:root{
+  --ts-safe-x:60px; --ts-safe-top:220px; --ts-safe-bottom:480px;   /* must-read text stays inside */
+  --ts-margin:72px;
+  --ts-caption-size:60px; --ts-caption-weight:700; --ts-caption-y:1300px;
+  --ts-h1:132px; --ts-h2:52px; --ts-title:68px; --ts-label:26px;
+  --ts-ease-out:cubic-bezier(.16,1,.3,1); --ts-ease-in:cubic-bezier(.7,0,.84,0);
+  --ts-dur-ui:.28s; --ts-dur-draw:.8s; --ts-stagger:.06s;
+}
+
+/* A — Blueprint: paper, hairline grid, ink, international orange */
+.ts-blueprint{--bg:#F3F1EA;--surface:transparent;--grid:rgba(20,33,61,.07);--text:#14213D;--muted:#6B7280;--line:#B9BDC7;--accent:#FF4F1F;--accent2:#1D4ED8;
+  --display:"Space Grotesk";--mono:"JetBrains Mono";--caption:"Space Grotesk";--h1-weight:600;--stroke:2px;--radius:4px}
+/* B — Instrument: near-black, teal, amber for warnings only */
+.ts-instrument{--bg:#06080C;--surface:#0B0F15;--grid:transparent;--text:#E6EDF3;--muted:#6E7B8B;--line:#1F2A36;--accent:#2DD4BF;--accent2:#F5B942;
+  --display:Geist;--mono:"Geist Mono";--caption:Geist;--h1-weight:600;--stroke:1.5px;--radius:6px}
+/* C — Midnight: 3B1B-style navy, yellow highlight, blue structure */
+.ts-midnight{--bg:#0E1320;--surface:#131A2B;--grid:transparent;--text:#ECEFF6;--muted:#8A94A8;--line:#2A3450;--accent:#FFC857;--accent2:#58C4DD;
+  --display:Inter;--mono:"IBM Plex Mono";--caption:Inter;--h1-weight:800;--stroke:3px;--radius:18px}
+/* D — Clinical: white, grey structure, one blue */
+.ts-clinical{--bg:#FFFFFF;--surface:#FFFFFF;--grid:transparent;--text:#0A0A0A;--muted:#8E8E93;--line:#E5E5EA;--accent:#0A84FF;--accent2:#5E5CE6;
+  --display:"Inter Tight";--mono:Inter;--caption:"Inter Tight";--h1-weight:600;--stroke:2px;--radius:14px}
+/* E — Signal: black, all-mono, one green */
+.ts-signal{--bg:#000000;--surface:#000000;--grid:transparent;--text:#F2F2F2;--muted:#777777;--line:#2C2C2C;--accent:#00E07A;--accent2:#F2F2F2;
+  --display:"JetBrains Mono";--mono:"JetBrains Mono";--caption:"JetBrains Mono";--h1-weight:500;--stroke:2px;--radius:0px}

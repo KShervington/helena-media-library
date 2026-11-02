@@ -1,0 +1,133 @@
+<!doctype html>
+<!--
+  Explainer demo + starter template: a 9:16 narration-synced composition built only from library assets.
+  Hook title (words set in as they're spoken) → pipeline mechanism (stages reveal on the narration words) → packet travels → captions throughout.
+  Every reveal time comes from narration.json (here a stub from stub-narration.py; in a real video, from the TTS alignment).
+
+  Open with ?dir=blueprint|instrument|midnight|clinical|signal (default instrument) and ?textless=1 for the no-caption master.
+
+  Render (from the library root):
+    P=assets/tools/render-pipeline
+    node $P/capture.mjs examples/explainer-demo/demo.html stills /tmp/demo-stills 1.2 4.5 9 14 19 27 --query dir=instrument
+    node $P/capture.mjs examples/explainer-demo/demo.html frames /tmp/demo-frames --query dir=instrument
+    bash $P/encode.sh /tmp/demo-frames narration.wav /tmp/explainer-demo.mp4 --poster 60
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../assets/brand/techsplained/tokens.css">
+<style>
+  html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: var(--bg); }
+  #stage { position: absolute; inset: 0; overflow: hidden; background: var(--bg); font-family: var(--display); color: var(--text); -webkit-font-smoothing: antialiased; }
+  .scene { position: absolute; inset: 0; }
+  .meta { position: absolute; left: 72px; right: 72px; top: 150px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 26px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+  .meta b { color: var(--text); font-weight: 500; }
+  /* hook */
+  #h1 { position: absolute; left: 72px; right: 72px; top: 380px; font-size: 132px; line-height: 1.0; letter-spacing: -.03em; font-weight: var(--h1-weight); }
+  #h1 .w { display: inline-block; margin-right: .22em; }
+  #h1 .acc { color: var(--accent); }
+  #spark { position: absolute; left: 72px; top: 1000px; width: 936px; height: 150px; }
+  /* mechanism */
+  #title { position: absolute; left: 72px; right: 72px; top: 300px; font-size: 68px; line-height: 1.1; letter-spacing: -.02em; font-weight: var(--h1-weight); }
+  #title .acc { color: var(--accent); }
+  #fig { position: absolute; left: 72px; top: 470px; width: 936px; height: 780px; }
+  .tiles { position: absolute; left: 610px; top: 20px; display: grid; grid-template-columns: repeat(4, 22px); gap: 5px; }
+  .tiles i { display: block; width: 22px; height: 22px; border: 1.5px solid var(--accent); }
+  .tiles i.full { background: var(--accent); }
+  .ts-blueprint #stage { background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 60px 60px; background-position: 30px 30px; }
+</style>
+<script>window.GML = { root: "../.." };</script>
+<script src="../../assets/tools/render-pipeline/core.js"></script>
+<script src="../../assets/tools/narration/narration.js"></script>
+<script src="../../assets/captions/word-sync/captions.js"></script>
+<script src="../../assets/diagrams/pipeline/pipeline.js"></script>
+<script src="narration.json.js"></script>
+</head>
+<body>
+<div id="stage">
+  <div class="meta"><span><b>tech_splained</b></span><span>demo</span></div>
+  <div id="sHook" class="scene">
+    <div id="h1"></div>
+    <svg id="spark" viewBox="0 0 936 150" fill="none">
+      <path id="sparkPath" d="M0,140 L120,138 L240,136 L360,133 L480,128 L560,120 L640,100 L720,70 L800,34 L936,6" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
+      <line x1="0" y1="149" x2="936" y2="149" stroke="var(--line)" stroke-width="2"/>
+    </svg>
+  </div>
+  <div id="sMech" class="scene">
+    <div id="title">How a vision model <span class="acc">reads</span> an image</div>
+    <div id="fig"></div>
+  </div>
+  <div id="captions" class="scene"></div>
+</div>
+<script>
+const { seg, lerp, ease, kf, ready } = GML.core;
+const q = new URLSearchParams(location.search);
+document.body.className = "ts-" + (q.get("dir") || "instrument");
+window.SIZE = { width: 1080, height: 1920 };
+
+let N, P, C, T = {};
+window.ready = (async () => {
+  N = GML.narration.create(window.NARRATION);   // narration.json.js (file:// pages can't fetch)
+  window.DURATION = Math.ceil(N.duration + 0.5);
+
+  // --- hook: one span per word, each sets in at its spoken time
+  const hookWords = N.wordsBetween(N.beat("hook"), N.at("days") + 0.01);
+  document.getElementById("h1").innerHTML = hookWords.map((w) =>
+    `<span class="w ${["forty","thousand","stars"].includes(w.n) ? "acc" : ""}" data-s="${w.s}">${w.w.replace("forty","40,000").replace("thousand","")}</span>`).join("");
+  T.hookEnd = N.beat("proof");
+  T.spark = N.at("stars");
+
+  // --- mechanism: pipeline stages reveal on narration words
+  P = GML.pipeline.create(document.getElementById("fig"), { steps: [
+    { label: "Image" }, { label: "256 tiles" }, { label: "Vision encoder" }, { label: "Tokens" }, { label: "Language model" } ] });
+  const tiles = document.createElement("div"); tiles.className = "tiles";
+  tiles.innerHTML = Array.from({ length: 16 }, (_, i) => `<i class="${i === 5 ? "full" : ""}"></i>`).join("");
+  P.nodes[1].appendChild(tiles); tiles.style.opacity = 0;
+  T.reveal = [N.at("picture"), N.at("chops"), N.at("puzzle"), N.at("number"), N.at("language")];
+  T.highlight = N.at("tiles");
+  T.packet = [N.at("sentence"), N.end("read")];
+  T.mech = N.beat("mechanism");
+
+  // --- captions (phrase mode): one line per clause; accent words land in var(--accent)
+  C = GML.captions.create(document.getElementById("captions"), { narration: N, lines: [
+    { from: "and", to: "why.", accent: ["nobody"] },
+    { from: "It's", to: "laptop.", accent: ["laptop"] },
+    { from: "A", to: "picture.", accent: [] },
+    { from: "So", to: "tiles,", accent: ["tiny","tiles"] },
+    { from: "like", to: "pieces.", accent: ["puzzle"] },
+    { from: "Each", to: "word.", accent: ["word"] },
+    { from: "So", to: "read.", accent: ["sentence"] },
+  ]});
+  await ready([]);
+  render(0);
+})();
+
+function render(t) {
+  // HOOK
+  const sHook = document.getElementById("sHook");
+  const hookOut = ease.i3(seg(t, T.hookEnd - 0.5, T.hookEnd));
+  sHook.style.display = t < T.hookEnd ? "" : "none";
+  sHook.style.opacity = 1 - hookOut;
+  sHook.style.transform = `translateY(${-60 * hookOut}px)`;
+  for (const w of document.querySelectorAll("#h1 .w")) {
+    const p = ease.o5(seg(t, +w.dataset.s, +w.dataset.s + 0.35));
+    w.style.opacity = p; w.style.transform = `translateY(${lerp(18, 0, p)}px)`;
+  }
+  const sp = document.getElementById("sparkPath"), L = 1000;
+  sp.style.strokeDasharray = L; sp.style.strokeDashoffset = L * (1 - ease.o3(seg(t, T.spark, T.spark + 1.2)));
+
+  // MECHANISM
+  const sMech = document.getElementById("sMech");
+  sMech.style.display = t >= T.hookEnd - 0.1 ? "" : "none";
+  const mechIn = ease.o5(seg(t, T.hookEnd - 0.1, T.hookEnd + 0.6));
+  sMech.style.opacity = mechIn; sMech.style.transform = `translateY(${lerp(40, 0, mechIn)}px)`;
+  const pk = t >= T.packet[0] && t <= T.packet[1] ? ease.io(seg(t, T.packet[0], T.packet[1])) : null;
+  P.render(t, { reveal: T.reveal, highlight: 1, highlightAt: T.highlight, packet: pk, dimOthers: t >= T.highlight && t < T.reveal[3] });
+  P.nodes[1].querySelector(".tiles").style.opacity = ease.o3(seg(t, T.highlight, T.highlight + 0.5));
+
+  // CAPTIONS
+  C.render(t);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# hook
+This repo got forty thousand stars in six days — and nobody could explain why.
+
+# proof
+It's a vision model small enough to run on your laptop.
+
+# mechanism
+A vision model can't look at a picture. So it chops the image into two hundred and fifty-six tiny tiles, like cutting a photo into puzzle pieces.
+
+# tokens
+Each tile becomes a number — a kind of word. So the picture turns into a sentence the language model can read.
