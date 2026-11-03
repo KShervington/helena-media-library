@@ -5,13 +5,13 @@
   moves whenever Helena speaks; captions follow the voice throughout. Every time comes from narration.json (stub here; real
   timings from the TTS runners) and levels.json (from levels.py; absent here, so the visualizer uses its stub mode).
 
-  ?type=geometric|grotesk|eurostile (default grotesk) · ?viz=grid|trace|disc (default grid) · ?textless=1 for the no-caption master.
+  ?type=eurostile (decided; geometric|grotesk kept for reference) · ?viz=grid (decided; trace|disc kept) · ?textless=1 for the no-caption master.
 
   Render (from the library root):
     P=assets/tools/render-pipeline
     python3 assets/tools/narration/stub-narration.py examples/explainer-demo/script.txt examples/explainer-demo/narration.json
-    node $P/capture.mjs examples/explainer-demo/demo.html stills /tmp/demo-stills 1.2 4 8 13 18 24 30 --query "type=grotesk&viz=grid"
-    node $P/capture.mjs examples/explainer-demo/demo.html frames /tmp/demo-frames --query "type=grotesk&viz=grid"
+    node $P/capture.mjs examples/explainer-demo/demo.html stills /tmp/demo-stills 1.2 4 8 13 18 24 30 --query "type=eurostile&viz=grid"
+    node $P/capture.mjs examples/explainer-demo/demo.html frames /tmp/demo-frames --query "type=eurostile&viz=grid"
     bash $P/encode.sh /tmp/demo-frames narration.wav /tmp/explainer-demo.mp4 --poster 60
 -->
 <html>
@@ -64,7 +64,7 @@
 <script>
 const { seg, lerp, ease, kf, ready } = GML.core;
 const q = new URLSearchParams(location.search);
-document.body.className = "hl-helena hl-type-" + (q.get("type") || "grotesk");
+document.body.className = "hl-helena hl-type-" + (q.get("type") || "eurostile");
 window.SIZE = { width: 1080, height: 1920 };
 
 // Helena's motion: slow, flat, no overshoot

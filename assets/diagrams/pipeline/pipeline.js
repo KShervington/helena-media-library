@@ -12,11 +12,12 @@
   const { injectCSS, seg, ease, lerp } = GML.core;
   injectCSS("hl-pipeline", `
     .hlp{position:absolute}
-    .hlp .node{position:absolute;border:var(--stroke) solid var(--line);border-radius:var(--radius);background:var(--surface);justify-content:var(--hl-node-justify,flex-start);
-      display:flex;align-items:center;gap:24px;padding:0 40px;box-sizing:border-box;font-family:var(--display);font-size:40px;font-weight:600;color:var(--text);
+    .hlp .node{position:absolute;border:var(--stroke) solid var(--line);border-radius:var(--radius);background:var(--surface);justify-content:var(--hl-node-justify,flex-start);box-shadow:var(--hl-shadow,none);border-color:var(--card-line,var(--line));
+      display:flex;align-items:center;gap:24px;padding:0 40px;box-sizing:border-box;font-family:var(--body,var(--display));font-size:40px;font-weight:600;color:var(--text);
       transform-origin:50% 50%;overflow:hidden}
     .hlp .node .k{font-family:var(--mono);font-size:24px;letter-spacing:.1em;color:var(--muted);font-weight:500}
-    .hlp .node.on{border-color:var(--accent);color:var(--accent)} .hlp .node.on .k{color:var(--accent)}
+    .hlp .node.on{border-color:var(--hl-on-border,var(--accent));color:var(--hl-on-color,var(--accent))} .hlp .node.on .k{color:var(--hl-on-color,var(--accent))}
+    .hlp .node .chip{display:none;position:absolute;right:28px;width:28px;height:28px;background:var(--accent)} .hlp .node.on .chip{display:var(--hl-chip,none)}
     .hlp .node.dim{color:var(--muted);border-color:var(--line)}
     .hlp .edge{position:absolute;width:var(--stroke);background:var(--line);transform-origin:50% 0}
     .hlp .edge:after{content:"";position:absolute;left:50%;bottom:-2px;width:14px;height:14px;border-right:var(--stroke) solid var(--line);border-bottom:var(--stroke) solid var(--line);transform:translateX(-50%) rotate(45deg)}
@@ -30,7 +31,7 @@
     steps.forEach((s, i) => {
       const n = document.createElement("div"); n.className = "node";
       n.style.cssText = `left:0;top:${i * (height + gap)}px;width:${width}px;height:${height}px`;
-      n.innerHTML = `<span class="k">${s.index || String(i + 1).padStart(2, "0")}</span>${s.label}`;
+      n.innerHTML = `<span class="k">${s.index || String(i + 1).padStart(2, "0")}</span>${s.label}<span class="chip"></span>`;
       el.appendChild(n); nodes.push(n);
       if (i < steps.length - 1) {
         const e = document.createElement("div"); e.className = "edge";

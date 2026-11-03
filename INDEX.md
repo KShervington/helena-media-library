@@ -6,7 +6,7 @@ Read this file first. Open an asset's `ASSET.md` only once you've decided to use
 
 ## brand
 
-- **brand-helena** · plumbing · `assets/brand/helena/` — Helena's design tokens — off-white ground, white surfaces, near-black ink, one red (#D0111B) — as `hl-helena`, with the three candidate type families as `hl-type-*`, slow-flat motion tokens, the 1080×1920 layout/caption tokens and OFL fonts; the five archived directions (hl-blueprint …) are kept for reference. Load it in every composition. _Used in 0: last —._
+- **brand-helena** · plumbing · `assets/brand/helena/` — Helena's design tokens — true-white ground, white cards lifted by a soft shadow, near-black ink, one red (#D0111B), Michroma + Inter type — as `hl-helena`; slow-flat motion tokens, the 1080×1920 layout/caption tokens and OFL fonts. The losing type families and the five archived directions stay in the file for reference. Load it in every composition. _Used in 0: last —._
 
 ## diagram
 

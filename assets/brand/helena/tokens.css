@@ -50,19 +50,22 @@
 .hl-signal{--bg:#000000;--surface:#000000;--grid:transparent;--text:#F2F2F2;--muted:#777777;--line:#2C2C2C;--accent:#00E07A;--accent2:#F2F2F2;
   --display:"JetBrains Mono";--mono:"JetBrains Mono";--caption:"JetBrains Mono";--h1-weight:500;--stroke:2px;--radius:0px}
 
-/* ===== HELENA (chosen palette, 2026-11-03) — off-white ground, white surfaces, near-black ink, one red ===== */
+/* ===== HELENA (decided 2026-11-03) — true-white ground, white cards lifted by a soft shadow, near-black ink, one red.
+   Type family: eurostile-like (Michroma headings/labels, Inter captions/body). Visualizer: grid. ===== */
 @font-face{font-family:Jost;font-weight:300;src:url(fonts/jost-latin-300-normal.woff2) format("woff2")}
 @font-face{font-family:Jost;font-weight:400;src:url(fonts/jost-latin-400-normal.woff2) format("woff2")}
 @font-face{font-family:Jost;font-weight:500;src:url(fonts/jost-latin-500-normal.woff2) format("woff2")}
 @font-face{font-family:Jost;font-weight:600;src:url(fonts/jost-latin-600-normal.woff2) format("woff2")}
 @font-face{font-family:Michroma;font-weight:400;src:url(fonts/michroma-latin-400-normal.woff2) format("woff2")}
 
-.hl-helena{--bg:#F0F0F2;--surface:#FFFFFF;--grid:transparent;--text:#0E0E10;--muted:#8A8A8E;--line:#C9C9CE;--accent:#D0111B;--accent2:#0E0E10;
+.hl-helena{--bg:#FFFFFF;--surface:#FFFFFF;--grid:transparent;--text:#0E0E10;--muted:#8A8A8E;--line:#C9C9CE;--card-line:#E9E9EC;--accent:#D0111B;--accent2:#0E0E10;
+  --hl-shadow:0 1px 2px rgba(14,14,16,.06),0 10px 28px rgba(14,14,16,.09);   /* depth instead of contrast: white on white */
   --stroke:1.5px;--radius:0px;
   /* motion: slower and flatter than the other directions — nothing bounces, nothing hurries */
   --hl-ease-out:cubic-bezier(.25,.1,.25,1);--hl-ease-in:cubic-bezier(.42,0,1,1);--hl-dur-ui:.5s;--hl-dur-draw:1.2s;--hl-stagger:.12s;
-  --hl-caption-y:1300px;--hl-caption-size:58px;--hl-node-justify:center}
-/* type families under test (D-01b) — one of these is added alongside .hl-helena */
+  --hl-caption-y:1300px;--hl-caption-size:58px;--hl-node-justify:center;--hl-on-border:var(--text);--hl-on-color:var(--text);--hl-chip:block}
+/* type families — D-01b decided: eurostile. The other two stay for reference only. */
 .hl-type-geometric{--display:Jost;--caption:Jost;--label:Jost;--mono:Jost;--caption-weight:500;--h1-weight:400;--hl-h1:112px;--hl-h1-track:-.005em;--hl-title:60px;--hl-label-track:.32em}
 .hl-type-grotesk{--display:"Inter Tight";--caption:"Inter Tight";--label:"IBM Plex Mono";--mono:"IBM Plex Mono";--caption-weight:600;--h1-weight:600;--hl-h1:104px;--hl-h1-track:-.035em;--hl-title:64px;--hl-label-track:.32em}
-.hl-type-eurostile{--display:Michroma;--caption:Inter;--label:Michroma;--mono:Michroma;--caption-weight:600;--h1-weight:400;--hl-h1:78px;--hl-h1-track:.01em;--hl-title:44px;--hl-label-track:.22em}
+
+.hl-helena,.hl-type-eurostile{--display:Michroma;--body:Inter;--caption:Inter;--label:Michroma;--mono:Michroma;--caption-weight:600;--h1-weight:400;--hl-h1:78px;--hl-h1-track:.01em;--hl-title:44px;--hl-label-track:.22em}

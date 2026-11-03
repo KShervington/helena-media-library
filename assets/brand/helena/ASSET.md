@@ -1,7 +1,7 @@
 ---
 id: brand-helena
 name: Helena brand kit
-description: Helena's design tokens — off-white ground, white surfaces, near-black ink, one red (#D0111B) — as `hl-helena`, with the three candidate type families as `hl-type-*`, slow-flat motion tokens, the 1080×1920 layout/caption tokens and OFL fonts; the five archived directions (hl-blueprint …) are kept for reference. Load it in every composition.
+description: Helena's design tokens — true-white ground, white cards lifted by a soft shadow, near-black ink, one red (#D0111B), Michroma + Inter type — as `hl-helena`; slow-flat motion tokens, the 1080×1920 layout/caption tokens and OFL fonts. The losing type families and the five archived directions stay in the file for reference. Load it in every composition.
 type: brand
 kind: plumbing
 entry: tokens.css
@@ -20,13 +20,13 @@ preview: preview.jpg
 
 ![preview](preview.jpg)
 
-The palette comes from Helena's character sheet: `#F0F0F2` ground, `#FFFFFF` surface, `#0E0E10` ink, `#8A8A8E` muted, `#C9C9CE` line, `#D0111B` red — one red idea per frame. Motion tokens are deliberately slow and flat (`--hl-dur-draw: 1.2s`, no overshoot easings). Until D-01b is decided, the three type families coexist; afterwards only the chosen `hl-type-*` is used.
+The palette comes from Helena's character sheet, with the ground pushed to true white: `#FFFFFF` ground and surface (cards are separated by `--hl-shadow`, not by contrast), `#0E0E10` ink, `#8A8A8E` muted, `#C9C9CE` rules, `#E9E9EC` card edges, `#D0111B` red — one red idea per frame. Type: Michroma (`--display`, `--label`) + Inter (`--body`, `--caption`). Motion tokens are deliberately slow and flat (`--hl-dur-draw: 1.2s`, no overshoot easings). Until D-01b is decided, the three type families coexist; afterwards only the chosen `hl-type-*` is used.
 
 ## Use
 
 ```html
 <link rel="stylesheet" href="../../assets/brand/helena/tokens.css">
-<body class="hl-helena hl-type-grotesk">
+<body class="hl-helena">
 <style>.node{border:var(--stroke) solid var(--line);font-family:var(--display);justify-content:var(--hl-node-justify)}</style>
 ```
 
