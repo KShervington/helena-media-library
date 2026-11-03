@@ -1,12 +1,12 @@
 ---
 id: diagram-pipeline
 name: Pipeline primitive (vertical)
-description: The vertical stage-by-stage pipeline (input → … → output) — stages wipe/draw on at narration times, edges grow, one stage takes the accent (others can dim), and a packet can travel the whole chain. Use for any "data flows through steps" mechanism.
+description: The vertical stage-by-stage pipeline (input → … → output) — white stages arrive at narration times, hairline edges grow, one stage takes the red (others can dim), and a packet can travel the whole chain. Use for any "data flows through steps" mechanism.
 type: diagram
 kind: plumbing
 entry: pipeline.js
 api: GML.pipeline.create(parent, { steps: [{ label, index? }], x, y, width, gap, height }) → { el, nodes, edges, render(t, { reveal[], highlight, highlightAt, packet, dimOthers }) }
-requires: [render-pipeline, brand-techsplained]
+requires: [render-pipeline, brand-helena]
 formats: [9:16]
 source: original (2026-11-01)
 license: internal — Kyle Shervington

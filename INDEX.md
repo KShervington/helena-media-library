@@ -6,18 +6,22 @@ Read this file first. Open an asset's `ASSET.md` only once you've decided to use
 
 ## brand
 
-- **brand-techsplained** · plumbing · `assets/brand/techsplained/` — Design tokens for the five candidate directions (blueprint, instrument, midnight, clinical, signal) as body classes, the shared 1080×1920 layout/caption/motion tokens, and the OFL font files. Load it in every composition; set one direction class on <body>. _Used in 0: last —._
+- **brand-helena** · plumbing · `assets/brand/helena/` — Helena's design tokens — off-white ground, white surfaces, near-black ink, one red (#D0111B) — as `hl-helena`, with the three candidate type families as `hl-type-*`, slow-flat motion tokens, the 1080×1920 layout/caption tokens and OFL fonts; the five archived directions (hl-blueprint …) are kept for reference. Load it in every composition. _Used in 0: last —._
 
 ## diagram
 
-- **diagram-pipeline** · plumbing · `assets/diagrams/pipeline/` — The vertical stage-by-stage pipeline (input → … → output) — stages wipe/draw on at narration times, edges grow, one stage takes the accent (others can dim), and a packet can travel the whole chain. Use for any "data flows through steps" mechanism. _Requires: render-pipeline, brand-techsplained._ _Used in 0: last —._
+- **diagram-pipeline** · plumbing · `assets/diagrams/pipeline/` — The vertical stage-by-stage pipeline (input → … → output) — white stages arrive at narration times, hairline edges grow, one stage takes the red (others can dim), and a packet can travel the whole chain. Use for any "data flows through steps" mechanism. _Requires: render-pipeline, brand-helena._ _Used in 0: last —._
+
+## motion
+
+- **voice-visualizer** · plumbing · `assets/motion/voice-visualizer/` — The mark that moves while Helena speaks — grid (the 3×3 dot mark from her uniform, centre dot red), trace (one red line) or disc (red disc in hairline rings) — driven per frame by levels.json from levels.py, with a stub mode for storyboards. Use in every video; it's the only "presence" she has on screen. _Requires: render-pipeline, narration-sync, brand-helena._ _Used in 0: last —._
 
 ## caption
 
-- **captions-word-sync** · plumbing · `assets/captions/word-sync/` — Burned-in captions in the safe band that follow narration.json — current word in the accent colour, upcoming words muted, accent words stay lit; phrase mode (3–8-word lines) or word mode (1–3 words, large). Hidden by ?textless=1. Use in every video. _Requires: render-pipeline, narration-sync, brand-techsplained._ _Used in 0: last —._
+- **captions-word-sync** · plumbing · `assets/captions/word-sync/` — Burned-in captions in the safe band that follow narration.json — current word in the accent colour, upcoming words muted, accent words stay lit; phrase mode (3–8-word lines) or word mode (1–3 words, large). Hidden by ?textless=1. Use in every video. _Requires: render-pipeline, narration-sync, brand-helena._ _Used in 0: last —._
 
 ## tool
 
-- **narration-sync** · plumbing · `assets/tools/narration/` — Word-level narration timing for compositions — GML.narration.create(json) gives at("word"), end(), beat("id"), after() so every reveal and caption follows the voice; stub-narration.py fakes timings from a script for storyboarding before the real TTS/alignment exists. Use in every video. _Requires: render-pipeline._ _Used in 0: last —._
+- **narration-sync** · plumbing · `assets/tools/narration/` — Narration tooling — GML.narration (at("word"), end(), beat("id"), after()) so every reveal and caption follows Helena's voice; TTS runners (elevenlabs.mjs, kokoro.py, chatterbox.py + align.py) that write narration.wav + narration.json; levels.py that turns the wav into loudness bands for the visualizer; stub-narration.py for storyboards. Use in every video. _Requires: render-pipeline._ _Used in 0: last —._
 - **render-pipeline** · plumbing · `assets/tools/render-pipeline/` — Everything to turn an HTML composition into a beat-synced MP4 — core.js runtime (beat grid, easing, keyframes, phone-screen + status-bar helpers), parallel headless frame capture, stills, transparent element export, song trimming/mixing at −14 LUFS, poster-as-frame-0 encoding, and drift-aware beat mapping. _Used in 0: last —._
 - **sfx-kit** · plumbing · `assets/tools/sfx-kit/` — Synthesized UI/foley SFX tuned to the song's key — whoosh, tap, key tick, chime, ratchet, sheet swish, door slam, stamp, six rising climb blips — plus cues.mjs, which turns a cue list (or a function over a composition's timeline) into audio.sh --sfx arguments. Use for every video's sound design (reveal ticks, transition whooshes, the CTA chime). _Requires: render-pipeline._ _Used in 0: last —._

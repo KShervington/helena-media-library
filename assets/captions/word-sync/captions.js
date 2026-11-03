@@ -6,14 +6,14 @@
  *   C.render(t)  → shows the active line, colours the word being spoken with var(--accent) (and keeps `accent` words accented once spoken)
  *   C.el         → the layer; hidden when the page is opened with ?textless=1
  *
- * Reads tokens: --caption, --ts-caption-size, --ts-caption-weight, --ts-caption-y, --text, --accent, --muted.
+ * Reads tokens: --caption, --hl-caption-size, --hl-caption-weight, --hl-caption-y, --text, --accent, --muted.
  * Style "word": shows 1–3 words at a time (current word large), for punchier hooks. Style "phrase" (default): 3–8 word lines, upcoming words at --muted.
  */
 (function () {
   const { injectCSS } = GML.core;
-  injectCSS("ts-captions", `
-    .tsc{position:absolute;left:90px;right:90px;top:var(--ts-caption-y,1300px);text-align:center;font-family:var(--caption);
-         font-size:var(--ts-caption-size,60px);font-weight:var(--ts-caption-weight,700);line-height:1.18;color:var(--text);
+  injectCSS("hl-captions", `
+    .tsc{position:absolute;left:90px;right:90px;top:var(--hl-caption-y,1300px);text-align:center;font-family:var(--caption);
+         font-size:var(--hl-caption-size,60px);font-weight:var(--hl-caption-weight,700);line-height:1.18;color:var(--text);
          text-wrap:balance}
     .tsc .w{display:inline-block;margin:0 .14em;transition:none}
     .tsc .w.past{color:var(--text)} .tsc .w.now{color:var(--accent)} .tsc .w.next{color:var(--muted)}

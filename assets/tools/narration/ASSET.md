@@ -1,10 +1,10 @@
 ---
 id: narration-sync
 name: Narration timing (narration.json + GML.narration + stub generator)
-description: Word-level narration timing for compositions — GML.narration.create(json) gives at("word"), end(), beat("id"), after() so every reveal and caption follows the voice; stub-narration.py fakes timings from a script for storyboarding before the real TTS/alignment exists. Use in every video.
+description: Narration tooling — GML.narration (at("word"), end(), beat("id"), after()) so every reveal and caption follows Helena's voice; TTS runners (elevenlabs.mjs, kokoro.py, chatterbox.py + align.py) that write narration.wav + narration.json; levels.py that turns the wav into loudness bands for the visualizer; stub-narration.py for storyboards. Use in every video.
 type: tool
 kind: plumbing
-entry: narration.js (runtime), stub-narration.py (storyboard stub), elevenlabs.mjs / kokoro.py / chatterbox.py + align.py (real voice → narration.wav + narration.json)
+entry: narration.js (runtime), elevenlabs.mjs / kokoro.py / chatterbox.py + align.py (voice → narration.wav + narration.json), levels.py (wav → levels.json), stub-narration.py (storyboard stub), VOICE.md (Helena's frozen voice, once decided)
 api: GML.narration.create(window.NARRATION) → { at, end, beat, after, find, wordsBetween, index, words, duration }
 requires: [render-pipeline]
 formats: [9:16, 16:9, 1:1]

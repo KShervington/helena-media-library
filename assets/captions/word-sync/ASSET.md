@@ -6,7 +6,7 @@ type: caption
 kind: plumbing
 entry: captions.js
 api: GML.captions.create(parent, { narration, lines: [{ from, to, accent[] }], style: "phrase"|"word", pill }) → { el, render(t) }
-requires: [render-pipeline, narration-sync, brand-techsplained]
+requires: [render-pipeline, narration-sync, brand-helena]
 formats: [9:16]
 source: original (2026-11-01)
 license: internal — Kyle Shervington
@@ -34,6 +34,6 @@ const C = GML.captions.create(document.getElementById("captions"), { narration: 
 
 ## Notes
 
-- Position/size come from `--ts-caption-y`, `--ts-caption-size`, `--ts-caption-weight` in the brand tokens (y 1300, 60 px, 700 by default).
+- Position/size come from `--hl-caption-y`, `--hl-caption-size`, `--hl-caption-weight` in the brand tokens (y 1300, 60 px, 700 by default).
 - `pill: true` wraps the line in an 82 %-opaque pill of the ground colour — use only when a caption overlaps a diagram.
 - Keep lines ≤ 8 words (≤ 22 characters per visual line in mono directions). The QA readability rule (≥ 0.3 s/word) is checked downstream.

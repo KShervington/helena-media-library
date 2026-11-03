@@ -1,4 +1,4 @@
-/* tech_splained brand tokens — one direction active per video via a body class.
+/* helena_loves_you brand tokens — one direction active per video via a body class.
    Directions mirror docs/aesthetics/explore.html in the workflow repo. Pick one; the others stay for A/B tests.
    Fonts: OFL (Inter, Inter Tight, Space Grotesk, JetBrains Mono, IBM Plex Mono) and Vercel Geist (OFL 1.1). */
 
@@ -26,26 +26,43 @@
 
 /* shared layout tokens (1080×1920) */
 :root{
-  --ts-safe-x:60px; --ts-safe-top:220px; --ts-safe-bottom:480px;   /* must-read text stays inside */
-  --ts-margin:72px;
-  --ts-caption-size:60px; --ts-caption-weight:700; --ts-caption-y:1300px;
-  --ts-h1:132px; --ts-h2:52px; --ts-title:68px; --ts-label:26px;
-  --ts-ease-out:cubic-bezier(.16,1,.3,1); --ts-ease-in:cubic-bezier(.7,0,.84,0);
-  --ts-dur-ui:.28s; --ts-dur-draw:.8s; --ts-stagger:.06s;
+  --hl-safe-x:60px; --hl-safe-top:220px; --hl-safe-bottom:480px;   /* must-read text stays inside */
+  --hl-margin:72px;
+  --hl-caption-size:60px; --hl-caption-weight:700; --hl-caption-y:1300px;
+  --hl-h1:132px; --hl-h2:52px; --hl-title:68px; --hl-label:26px;
+  --hl-ease-out:cubic-bezier(.16,1,.3,1); --hl-ease-in:cubic-bezier(.7,0,.84,0);
+  --hl-dur-ui:.28s; --hl-dur-draw:.8s; --hl-stagger:.06s;
 }
 
 /* A — Blueprint: paper, hairline grid, ink, international orange */
-.ts-blueprint{--bg:#F3F1EA;--surface:transparent;--grid:rgba(20,33,61,.07);--text:#14213D;--muted:#6B7280;--line:#B9BDC7;--accent:#FF4F1F;--accent2:#1D4ED8;
+.hl-blueprint{--bg:#F3F1EA;--surface:transparent;--grid:rgba(20,33,61,.07);--text:#14213D;--muted:#6B7280;--line:#B9BDC7;--accent:#FF4F1F;--accent2:#1D4ED8;
   --display:"Space Grotesk";--mono:"JetBrains Mono";--caption:"Space Grotesk";--h1-weight:600;--stroke:2px;--radius:4px}
 /* B — Instrument: near-black, teal, amber for warnings only */
-.ts-instrument{--bg:#06080C;--surface:#0B0F15;--grid:transparent;--text:#E6EDF3;--muted:#6E7B8B;--line:#1F2A36;--accent:#2DD4BF;--accent2:#F5B942;
+.hl-instrument{--bg:#06080C;--surface:#0B0F15;--grid:transparent;--text:#E6EDF3;--muted:#6E7B8B;--line:#1F2A36;--accent:#2DD4BF;--accent2:#F5B942;
   --display:Geist;--mono:"Geist Mono";--caption:Geist;--h1-weight:600;--stroke:1.5px;--radius:6px}
 /* C — Midnight: 3B1B-style navy, yellow highlight, blue structure */
-.ts-midnight{--bg:#0E1320;--surface:#131A2B;--grid:transparent;--text:#ECEFF6;--muted:#8A94A8;--line:#2A3450;--accent:#FFC857;--accent2:#58C4DD;
+.hl-midnight{--bg:#0E1320;--surface:#131A2B;--grid:transparent;--text:#ECEFF6;--muted:#8A94A8;--line:#2A3450;--accent:#FFC857;--accent2:#58C4DD;
   --display:Inter;--mono:"IBM Plex Mono";--caption:Inter;--h1-weight:800;--stroke:3px;--radius:18px}
 /* D — Clinical: white, grey structure, one blue */
-.ts-clinical{--bg:#FFFFFF;--surface:#FFFFFF;--grid:transparent;--text:#0A0A0A;--muted:#8E8E93;--line:#E5E5EA;--accent:#0A84FF;--accent2:#5E5CE6;
+.hl-clinical{--bg:#FFFFFF;--surface:#FFFFFF;--grid:transparent;--text:#0A0A0A;--muted:#8E8E93;--line:#E5E5EA;--accent:#0A84FF;--accent2:#5E5CE6;
   --display:"Inter Tight";--mono:Inter;--caption:"Inter Tight";--h1-weight:600;--stroke:2px;--radius:14px}
 /* E — Signal: black, all-mono, one green */
-.ts-signal{--bg:#000000;--surface:#000000;--grid:transparent;--text:#F2F2F2;--muted:#777777;--line:#2C2C2C;--accent:#00E07A;--accent2:#F2F2F2;
+.hl-signal{--bg:#000000;--surface:#000000;--grid:transparent;--text:#F2F2F2;--muted:#777777;--line:#2C2C2C;--accent:#00E07A;--accent2:#F2F2F2;
   --display:"JetBrains Mono";--mono:"JetBrains Mono";--caption:"JetBrains Mono";--h1-weight:500;--stroke:2px;--radius:0px}
+
+/* ===== HELENA (chosen palette, 2026-11-03) — off-white ground, white surfaces, near-black ink, one red ===== */
+@font-face{font-family:Jost;font-weight:300;src:url(fonts/jost-latin-300-normal.woff2) format("woff2")}
+@font-face{font-family:Jost;font-weight:400;src:url(fonts/jost-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:Jost;font-weight:500;src:url(fonts/jost-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:Jost;font-weight:600;src:url(fonts/jost-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:Michroma;font-weight:400;src:url(fonts/michroma-latin-400-normal.woff2) format("woff2")}
+
+.hl-helena{--bg:#F0F0F2;--surface:#FFFFFF;--grid:transparent;--text:#0E0E10;--muted:#8A8A8E;--line:#C9C9CE;--accent:#D0111B;--accent2:#0E0E10;
+  --stroke:1.5px;--radius:0px;
+  /* motion: slower and flatter than the other directions — nothing bounces, nothing hurries */
+  --hl-ease-out:cubic-bezier(.25,.1,.25,1);--hl-ease-in:cubic-bezier(.42,0,1,1);--hl-dur-ui:.5s;--hl-dur-draw:1.2s;--hl-stagger:.12s;
+  --hl-caption-y:1300px;--hl-caption-size:58px;--hl-node-justify:center}
+/* type families under test (D-01b) — one of these is added alongside .hl-helena */
+.hl-type-geometric{--display:Jost;--caption:Jost;--label:Jost;--mono:Jost;--caption-weight:500;--h1-weight:400;--hl-h1:112px;--hl-h1-track:-.005em;--hl-title:60px;--hl-label-track:.32em}
+.hl-type-grotesk{--display:"Inter Tight";--caption:"Inter Tight";--label:"IBM Plex Mono";--mono:"IBM Plex Mono";--caption-weight:600;--h1-weight:600;--hl-h1:104px;--hl-h1-track:-.035em;--hl-title:64px;--hl-label-track:.32em}
+.hl-type-eurostile{--display:Michroma;--caption:Inter;--label:Michroma;--mono:Michroma;--caption-weight:600;--h1-weight:400;--hl-h1:78px;--hl-h1-track:.01em;--hl-title:44px;--hl-label-track:.22em}

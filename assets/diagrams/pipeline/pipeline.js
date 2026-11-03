@@ -10,21 +10,21 @@
  */
 (function () {
   const { injectCSS, seg, ease, lerp } = GML.core;
-  injectCSS("ts-pipeline", `
-    .tsp{position:absolute}
-    .tsp .node{position:absolute;border:var(--stroke) solid var(--line);border-radius:var(--radius);background:var(--surface);
+  injectCSS("hl-pipeline", `
+    .hlp{position:absolute}
+    .hlp .node{position:absolute;border:var(--stroke) solid var(--line);border-radius:var(--radius);background:var(--surface);justify-content:var(--hl-node-justify,flex-start);
       display:flex;align-items:center;gap:24px;padding:0 40px;box-sizing:border-box;font-family:var(--display);font-size:40px;font-weight:600;color:var(--text);
       transform-origin:50% 50%;overflow:hidden}
-    .tsp .node .k{font-family:var(--mono);font-size:24px;letter-spacing:.1em;color:var(--muted);font-weight:500}
-    .tsp .node.on{border-color:var(--accent);color:var(--accent)} .tsp .node.on .k{color:var(--accent)}
-    .tsp .node.dim{color:var(--muted);border-color:var(--line)}
-    .tsp .edge{position:absolute;width:var(--stroke);background:var(--line);transform-origin:50% 0}
-    .tsp .edge:after{content:"";position:absolute;left:50%;bottom:-2px;width:14px;height:14px;border-right:var(--stroke) solid var(--line);border-bottom:var(--stroke) solid var(--line);transform:translateX(-50%) rotate(45deg)}
-    .tsp .packet{position:absolute;width:18px;height:18px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px var(--accent);transform:translate(-50%,-50%)}
+    .hlp .node .k{font-family:var(--mono);font-size:24px;letter-spacing:.1em;color:var(--muted);font-weight:500}
+    .hlp .node.on{border-color:var(--accent);color:var(--accent)} .hlp .node.on .k{color:var(--accent)}
+    .hlp .node.dim{color:var(--muted);border-color:var(--line)}
+    .hlp .edge{position:absolute;width:var(--stroke);background:var(--line);transform-origin:50% 0}
+    .hlp .edge:after{content:"";position:absolute;left:50%;bottom:-2px;width:14px;height:14px;border-right:var(--stroke) solid var(--line);border-bottom:var(--stroke) solid var(--line);transform:translateX(-50%) rotate(45deg)}
+    .hlp .packet{position:absolute;width:18px;height:18px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px var(--accent);transform:translate(-50%,-50%)}
   `);
   function create(parent, { steps, x = 150, y = 0, width = 636, gap = 48, height = 104 }) {
     const el = document.createElement("div");
-    el.className = "tsp"; el.style.left = x + "px"; el.style.top = y + "px"; el.style.width = width + "px";
+    el.className = "hlp"; el.style.left = x + "px"; el.style.top = y + "px"; el.style.width = width + "px";
     parent.appendChild(el);
     const nodes = [], edges = [];
     steps.forEach((s, i) => {
