@@ -28,4 +28,4 @@ d = np.clip(d / top, 0, 1) ** 0.7                      # gentle compression so q
 for i in range(1, len(d)): d[i] = np.maximum(d[i], d[i - 1] * 0.82)
 j = {"rate": rate, "bands": nb, "duration": round(len(x) / SR, 3), "data": [[round(float(v), 3) for v in row] for row in d]}
 json.dump(j, open(out, "w")); open(out + ".js", "w").write("window.LEVELS = " + json.dumps(j) + ";\n")
-print(f"{len(d)} frames @ {rate} Hz, {nb} bands → {out}")
+print(f"{len(d)} frames @ {rate} Hz, {nb} bands -> {out}")

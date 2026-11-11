@@ -27,4 +27,4 @@ for block in re.split(r"\n\s*\n", open(src).read().strip()):
 torchaudio.save(os.path.join(out, "narration.wav"), torch.cat(chunks, dim=-1), SR)
 json.dump({"duration": round(t0, 3), "beats": beats, "provider": "chatterbox", "model": "turbo", "voice": ref or "default",
            "delivery": {"exaggeration": exag, "cfg": cfg, "ref": ref}, "rendered_at": datetime.datetime.now().isoformat(), "words": None, "note": "run align.py"}, open(os.path.join(out, "narration.meta.json"), "w"), indent=1)
-print(f"{t0:.1f}s → {out} (now: python3 align.py {out}/narration.wav {src} {out}/narration.json)")
+print(f"{t0:.1f}s -> {out} (now: python3 align.py {out}/narration.wav {src} {out}/narration.json)")

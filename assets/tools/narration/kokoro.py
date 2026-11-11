@@ -32,4 +32,4 @@ sf.write(os.path.join(out, "narration.wav"), np.concatenate(audio), SR)
 j = {"duration": round(t0, 3), "words": words, "beats": beats, "provider": "kokoro", "model": "Kokoro-82M", "voice": voice, "delivery": {"speed": speed}, "rendered_at": datetime.datetime.now().isoformat()}
 json.dump(j, open(os.path.join(out, "narration.json"), "w"), indent=1)
 open(os.path.join(out, "narration.json.js"), "w").write("window.NARRATION = " + json.dumps(j) + ";\n")
-print(f"{len(words)} words, {t0:.1f}s → {out}")
+print(f"{len(words)} words, {t0:.1f}s -> {out}")

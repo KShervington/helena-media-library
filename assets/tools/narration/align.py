@@ -31,4 +31,4 @@ for bid, s in zip(beat_ids, spoken):
 meta = json.load(open(os.path.join(os.path.dirname(out) or ".", "narration.meta.json"))) if os.path.exists(os.path.join(os.path.dirname(out) or ".", "narration.meta.json")) else {}
 j = {**meta, "duration": words[-1]["e"] if words else 0, "words": words, "beats": beats, "aligner": "ctc-forced-aligner"}
 json.dump(j, open(out, "w"), indent=1); open(out + ".js", "w").write("window.NARRATION = " + json.dumps(j) + ";\n")
-print(f"{len(words)} words aligned → {out}")
+print(f"{len(words)} words aligned -> {out}")

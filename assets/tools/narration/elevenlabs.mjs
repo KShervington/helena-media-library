@@ -34,7 +34,7 @@ async function synth(spoken) {
     if (r.ok) return r.json();
     const body = await r.text();
     if (r.status === 403 && /output_format_not_allowed/.test(body) && format !== "mp3_44100_128") {
-      console.error(`output_format ${format} not allowed on this plan — retrying with mp3_44100_128`); format = "mp3_44100_128"; continue;
+      console.error(`output_format ${format} not allowed on this plan - retrying with mp3_44100_128`); format = "mp3_44100_128"; continue;
     }
     throw new Error(`${r.status} ${body}`);
   }
@@ -68,4 +68,4 @@ execSync(`ffmpeg -y -f s16le -ar ${SR} -ac 1 -i "${raw}" -ar 48000 "${path.join(
 const json = { duration: t0, words, beats, provider: "elevenlabs", model, voice, delivery: { tags, stability, style, speed, format }, rendered_at: new Date().toISOString() };
 fs.writeFileSync(path.join(out, "narration.json"), JSON.stringify(json, null, 1));
 fs.writeFileSync(path.join(out, "narration.json.js"), "window.NARRATION = " + JSON.stringify(json) + ";\n");
-console.log(`${words.length} words, ${t0.toFixed(1)} s → ${out}`);
+console.log(`${words.length} words, ${t0.toFixed(1)} s -> ${out}`);
